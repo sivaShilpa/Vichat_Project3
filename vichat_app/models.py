@@ -11,8 +11,8 @@ class User(AbstractUser):
     friends = models.ManyToManyField("User", blank=True)
 
 class Profile(models.Model):
-    nickname = models.CharField(max_length=50, blank=True)
-    profile_pic = models.CharField(max_length=400, blank=True)
+    nickname = models.CharField(max_length=50)
+    profile_pic = models.CharField(max_length=400)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
 
