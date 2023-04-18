@@ -8,6 +8,12 @@ from .models import *
 from .forms import *
 
 # Create your views here.
+def profile(request):
+   profile = Profile.objects.get(user=request.user)
+
+   return render(request, 'profile/details.html', {
+      'profile': profile
+   })
 
 def signup(request):
   error_message = ''
@@ -48,5 +54,7 @@ def accept_friend_request(request, requestID):
         return HTTPResponse('friend request accepted')
     else:
         return HTTPResponse('friend request not accepted')
+    
+
 
 
