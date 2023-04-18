@@ -1,36 +1,33 @@
-from http.client import HTTPResponse
-from smtplib import SMTPResponseException
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 # Create your models here.
+
+
 class User(AbstractUser):
     friends = models.ManyToManyField("User", blank=True)
 
+class Profile(models.Model):
+    nickname = models.CharField(max_length=50, blank=True)
+    profile_pic = models.CharField(max_length=400, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
+
 class Friend_Request(models.Model):
     from_user = models.ForeignKey(
-      User, related_name='From_user', on_delete=models.CASCADE)
+      User, related_name='from_user', on_delete=models.CASCADE)
     to_user = models.ForeignKey(
       User, related_name='to_user', on_delete=models.CASCADE)
 
-@login_required
-def send_friend_request(request, userID):
-    from_user = request.user
-    to_user = User.objects.get(id=userID)
-    friend_request, created = Friend_Request.objects.get_or_create(
-      from_user=from_user, to_user=to_user)
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        return HTTPResponse('Friend request sent!')
-    else:
-        return HTTPResponse('Friend request was already sent')
+        Profile.objects.create(user=instance)
 
-@login_required
-def accept_friend_request(request, requestID):
-    friend_request = Friend_Request.objects.get(id=requestID)
-    if friend_request.to_user == request.user:
-        friend_request.to_user.friends.add(friend_request.from_user)
-        friend_request.from_user.friends.add(friend_request.to_user)
-        friend_request.delete()
-        return HTTPResponse('friend request accepted')
-    else:
-        return HTTPResponse('friend request not accepted')
+#this method to update profile when user is updated
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
