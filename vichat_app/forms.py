@@ -3,20 +3,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 
 class SignupForm(UserCreationForm):
-    fullname = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "class":"form-control"
-            }
-        )
-    )
-    email = forms.CharField(
-        widget=forms.EmailInput(
-            attrs={
-                "class": "form-control"
-            }
-        )
-    )
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -27,6 +13,6 @@ class SignupForm(UserCreationForm):
     
     class Meta:
       model = get_user_model()
-      fields  = ('fullname','username','email')
+      fields  = ('username',)
 
 

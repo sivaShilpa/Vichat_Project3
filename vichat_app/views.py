@@ -3,12 +3,21 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import UpdateView
 from .models import *
 from .forms import *
 
 # Create your views here.
-def profile(request):
+@login_required
+def main(request):
    profile = Profile.objects.get(user=request.user)
+
+   return render(request, 'vichat_app/main.html', {
+      'profile': profile
+   })
+
+def profile(request, profile_id):
+   profile = Profile.objects.get(id=profile_id)
 
    return render(request, 'profile/details.html', {
       'profile': profile
@@ -65,6 +74,10 @@ def accept_friend_request(request, requestID):
     else:
         return redirect('fr-index')
     
+
+class ProfileUpdate(UpdateView):
+   model = Profile
+   fields = ['nickname', 'profile_pic']
 
 
 

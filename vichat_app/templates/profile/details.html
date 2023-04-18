@@ -2,9 +2,9 @@
 
 {% block content %}
 
-
-
-
+{% if profile.user == request.user %}
+<a href="{% url 'profile_update' profile.id %}">Edit Profile</a>
+{% endif %}
 <div>
     <p>Screen Name |  {{ profile.nickname }}</p>
     <p>img link {{ profile.profile_pic }}</p>

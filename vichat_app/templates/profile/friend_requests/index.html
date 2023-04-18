@@ -5,13 +5,14 @@
 <ul class="allUsers">
     <table>
         <tbody>
-            {% for user in allusers %}
-            {% if user not in friends_list %}
-            {% if user != request.user %}
+            {% for user1 in allusers %}
+            
+            {% if user1 not in friends_list %}
+            {% if user1 != request.user %}
 
             <tr>
                 <td>
-                    <h1>{{user.username}}</h1>
+                    <h1>{{user1.username}}</h1>
                 </td>
 
                 <td>
@@ -50,6 +51,8 @@
             </tr>
         </tbody>
     </table>
+    {% empty %}
+    <h2>No Friend Requests right now</h2>
     {% endfor %}
 </ul>
 
