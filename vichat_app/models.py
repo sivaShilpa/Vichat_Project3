@@ -10,6 +10,10 @@ from django.dispatch import receiver
 class User(AbstractUser):
     friends = models.ManyToManyField("User", blank=True)
 
+
+    def __str__(self):
+        return f"{self.username} | {self.friends}"
+
 class Profile(models.Model):
     nickname = models.CharField(max_length=50)
     profile_pic = models.CharField(max_length=400)

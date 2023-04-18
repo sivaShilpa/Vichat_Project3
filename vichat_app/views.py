@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from .models import *
 from .forms import *
 
@@ -14,6 +13,17 @@ def profile(request):
    return render(request, 'profile/details.html', {
       'profile': profile
    })
+
+def friend_requests_index(request):
+  allusers = User.objects.all()
+  all_friend_requests = Friend_Request.objects.filter(to_user = request.user)
+  friends_list = request.user.friends.all()
+
+  return render(request, 'profile/friend_requests/index.html', {
+      'all_friend_requests': all_friend_requests,
+      'allusers': allusers,
+      'friends_list': friends_list,
+  })
 
 def signup(request):
   error_message = ''
@@ -40,9 +50,9 @@ def send_friend_request(request, userID):
     friend_request, created = Friend_Request.objects.get_or_create(
       from_user=from_user, to_user=to_user)
     if created:
-        return HTTPResponse('Friend request sent!')
+        return redirect('fr-index')
     else:
-        return HTTPResponse('Friend request was already sent')
+        return redirect('fr-index')
 
 @login_required
 def accept_friend_request(request, requestID):
@@ -51,9 +61,9 @@ def accept_friend_request(request, requestID):
         friend_request.to_user.friends.add(friend_request.from_user)
         friend_request.from_user.friends.add(friend_request.to_user)
         friend_request.delete()
-        return HTTPResponse('friend request accepted')
+        return redirect('fr-index')
     else:
-        return HTTPResponse('friend request not accepted')
+        return redirect('fr-index')
     
 
 
