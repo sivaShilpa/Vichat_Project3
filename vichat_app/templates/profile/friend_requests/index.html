@@ -1,17 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h5>Add friend</h5>
 <ul class="allUsers">
-  {% for user in allusers %}
-  {% if user not in friends_list %}
-  {% if user != request.user %}
+    <table>
+        <tbody>
+            {% for user in allusers %}
+            {% if user not in friends_list %}
+            {% if user != request.user %}
 
-  <h1>{{user.username}} <a href="/send_friend_request/{{user.id}}/">send friend request</a></h1>
-  {% endif %}
-  {% endif %}
-  {% endfor %}
-  {% for friend_request in all_friend_requests %}
-  <h1>
-    {{friend_request.from_user}}
-      <a href="/accept_friend_request/{{friend_request.id}}/">accept friend request</a>
-  </h1>
-  {% endfor %}
+            <tr>
+                <td>
+                    <h1>{{user.username}}</h1>
+                </td>
+
+                <td>
+                    <a href="/send_friend_request/{{user.id}}/">
+                        <button
+                            class="mr-1 mb-1 px-8 py-3 bg-gray text-base font-bold text-blue-500 uppercase focus:outline-none">Send
+                            Friend Request</button>
+                    </a>
+                </td>
+            </tr>
+
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    {% for friend_request in all_friend_requests %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Friend</th>
+                <th>Requests</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>
+                    <h1> {{friend_request.from_user.username}}</h1>
+                </td>
+                <td>
+                    <a class="mr-1 mb-1 px-8 py-3 bg-gray text-base font-bold text-blue-500 uppercase focus:outline-none"
+                        href="/accept_friend_request/{{friend_request.id}}/">accept friend request</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    {% endfor %}
 </ul>
+
+{% endblock %}
