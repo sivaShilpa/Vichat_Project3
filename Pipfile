@@ -12,6 +12,7 @@ name = ""
 django = "*"
 python-decouple = "*"
 psycopg2-binary = "*"
+django-tailwind = "*"
 
 [dev-packages]
 
