@@ -13,18 +13,23 @@ def main(request):
    friends_list = request.user.friends.all()
    friend_profiles = Profile.objects.filter(user__in=friends_list)
 
-  
-
    return render(request, 'vichat_app/main.html', {
       'friend_profiles': friend_profiles,
    })
 
 def profile(request, profile_id):
    profile = Profile.objects.get(id=profile_id)
-
    return render(request, 'profile/details.html', {
-      'profile': profile
+      'profile': profile,
    })
+
+def friends_list(request, ):
+  friends_list = request.user.friends.all()
+  friend_profiles = Profile.objects.filter(user__in=friends_list)
+  return render('friends/index.html', {
+      'friends_list': friends_list,
+      'friend_profiles': friend_profiles,
+  })
 
 def friend_requests_index(request):
   allusers = User.objects.all()
