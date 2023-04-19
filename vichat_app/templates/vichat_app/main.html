@@ -2,19 +2,16 @@
 
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>This is main</h1>
-  <button class="bg-indigo-500 text-white py-2 text-sm px-3 rounded focus:outline-none">New Contact</button>
-</body>
-</html>
+{% for friend in friend_profiles %}
+<div>
+  <a href="{% url 'profile' friend.id %}">
+    {{ friend.nickname }}
+  </a>
+</div>
+
+{% empty %}
+<h2>Add some friends to get started!</h2>
+{% endfor %}
 
 
 {% endblock %}
