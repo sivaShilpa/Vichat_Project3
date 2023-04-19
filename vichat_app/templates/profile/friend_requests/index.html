@@ -6,7 +6,7 @@
     <table>
         <tbody>
             {% for user1 in allusers %}
-            
+
             {% if user1 not in friends_list %}
             {% if user1 != request.user %}
 
@@ -16,7 +16,7 @@
                 </td>
 
                 <td>
-                    <a href="/send_friend_request/{{user.id}}/">
+                    <a href="/send_friend_request/{{user1.id}}/">
                         <button
                             class="mr-1 mb-1 px-8 py-3 bg-gray text-base font-bold text-blue-500 uppercase focus:outline-none">Send
                             Friend Request</button>
@@ -29,8 +29,6 @@
             {% endfor %}
         </tbody>
     </table>
-    {% for friend_request in all_friend_requests %}
-
     <table>
         <thead>
             <tr>
@@ -39,6 +37,9 @@
             </tr>
         </thead>
         <tbody>
+
+            {% for friend_request in all_friend_requests %}
+
 
             <tr>
                 <td>
@@ -49,11 +50,12 @@
                         href="/accept_friend_request/{{friend_request.id}}/">accept friend request</a>
                 </td>
             </tr>
+
+            {% empty %}
+            <h2>No Friend Requests right now</h2>
+            {% endfor %}
         </tbody>
     </table>
-    {% empty %}
-    <h2>No Friend Requests right now</h2>
-    {% endfor %}
 </ul>
 
 {% endblock %}
