@@ -27,7 +27,7 @@
 						<!-- Primary Navbar items -->
 						<div class="hidden md:flex items-center space-x-1">
 							<a
-								href=""
+								href="/"
 								class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold "
 								>Home</a
 							>
@@ -38,9 +38,9 @@
 							>Profile</a
 							>
 							<a
-							href=""
+							href="{% url 'friends_list' request.user.id %}"
 							class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
-							>Chat</a
+							>Friends</a
 						>
 						<a
 							href=""
