@@ -11,9 +11,14 @@ from .forms import *
 @login_required
 def main(request):
    profile = Profile.objects.get(user=request.user)
+   friends_list = request.user.friends.all()
+   friend_profiles = Profile.objects.filter(user__in=friends_list)
+
+  
 
    return render(request, 'vichat_app/main.html', {
-      'profile': profile
+      'profile': profile,
+      'friend_profiles': friend_profiles,
    })
 
 def profile(request, profile_id):
