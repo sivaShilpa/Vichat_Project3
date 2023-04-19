@@ -2,16 +2,20 @@
 
 {% block content %}
 
-{% if profile.user == request.user %}
-<a href="{% url 'profile_update' profile.id %}">Edit Profile</a>
-{% endif %}
-<div>
-    <p>Screen Name |  {{ profile.nickname }}</p>
-    <p>img link {{ profile.profile_pic }}</p>
-</div>
-
-<div>
-    <a href="{% url 'fr-index' %}">Check Friend Requests</a>
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-white shadow-md rounded-lg p-6 my-4 w-full max-w-md">
+        <div class="flex flex-col items-center">
+            <img src="{{ profile.profile_pic }}" alt="{{ profile.nickname }}'s profile picture" class="w-48 h-48 object-cover rounded-full mt-4 mb-6">
+            <p class="text-lg font-bold mb-4">{{ profile.nickname }}</p>
+        </div>
+        {% if profile.user == request.user %}
+        <div class="flex justify-around">
+            <a href="{% url 'fr-index' %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Check Friend Requests</a>
+            <a href="{% url 'profile_update' profile.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Profile</a>
+        </div>
+        {% endif %}
+    </div>
 </div>
 
 {% endblock %}
+
