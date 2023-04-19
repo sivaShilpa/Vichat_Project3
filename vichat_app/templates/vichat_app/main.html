@@ -2,16 +2,6 @@
 
 {% block content %}
 
-{% for friend in friend_profiles %}
-<div>
-  <a href="{% url 'profile' friend.id %}">
-    {{ friend.nickname }}
-  </a>
-</div>
-
-{% empty %}
-<h2>Add some friends to get started!</h2>
-{% endfor %}
 
 
 {% endblock %}

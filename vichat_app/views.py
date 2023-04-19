@@ -23,11 +23,10 @@ def profile(request, profile_id):
       'profile': profile,
    })
 
-def friends_list(request, ):
+def friends_list(request):
   friends_list = request.user.friends.all()
   friend_profiles = Profile.objects.filter(user__in=friends_list)
-  return render('friends/index.html', {
-      'friends_list': friends_list,
+  return render(request,'friends/index.html', {
       'friend_profiles': friend_profiles,
   })
 
