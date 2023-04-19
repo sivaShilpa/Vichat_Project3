@@ -4,7 +4,7 @@
 
 {% for friend in friend_profiles %}
 <div>
-  <a href="{% url 'profile' profile.id %}">
+  <a href="{% url 'profile' friend.id %}">
     {{ friend.nickname }}
   </a>
 </div>

@@ -10,14 +10,12 @@ from .forms import *
 # Create your views here.
 @login_required
 def main(request):
-   profile = Profile.objects.get(user=request.user)
    friends_list = request.user.friends.all()
    friend_profiles = Profile.objects.filter(user__in=friends_list)
 
   
 
    return render(request, 'vichat_app/main.html', {
-      'profile': profile,
       'friend_profiles': friend_profiles,
    })
 
@@ -29,13 +27,11 @@ def profile(request, profile_id):
    })
 
 def friend_requests_index(request):
-  profile = Profile.objects.get(user=request.user)
   allusers = User.objects.all()
   all_friend_requests = Friend_Request.objects.filter(to_user = request.user)
   friends_list = request.user.friends.all()
 
   return render(request, 'profile/friend_requests/index.html', {
-      'profile': profile,
       'all_friend_requests': all_friend_requests,
       'allusers': allusers,
       'friends_list': friends_list,
