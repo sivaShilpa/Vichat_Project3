@@ -1,19 +1,28 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-{% for friend in friend_profiles %}
-<div>
-  <a href="{% url 'profile' friend.id %}">
-    {{ friend.nickname }}
-  </a>
+
+<div class="min-h-screen bg-gradient-to-r from-green-400 to-lime-300 flex items-center justify-center">
+    <div class="bg-white shadow-md rounded-lg p-6 h-full w-full max-w-2xl">
+        <div class="flex justify-around items-center">
+            {% for friend in friend_profiles %}
+            <div>
+                <a href="{% url 'profile' friend.id %}">
+                    <div>
+                        <p>{{ friend.nickname }}</p>
+                        <img src="" alt="profile pic">
+                    </div>
+                </a>
+
+                <a href="{% url 'remove_friend' friend.id %}"><button>remove friend</button></a>
+            </div>
+            {% empty %}
+            <a href="{% url 'fr-index' %}">
+                <h2 class="text-2xl">Add some friends to get started!</h2>
+            </a>
+            {% endfor %}
+        </div>
+
+    </div>
 </div>
-
-{% empty %}
-<a href="{% url 'fr-index' %}">
-    <h2>Add some friends to get started!</h2>
-</a>
-{% endfor %}
-
-
 {% endblock %}
