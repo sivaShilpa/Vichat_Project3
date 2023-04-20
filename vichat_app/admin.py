@@ -8,3 +8,4 @@ admin.site.register(Friend_Request)
 admin.site.register(Photo)
 admin.site.register(Chat_History)
 admin.site.register(Message)
+

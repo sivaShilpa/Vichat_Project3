@@ -25,9 +25,16 @@ def main(request):
 
 def profile(request, profile_id):
    profile = Profile.objects.get(id=profile_id)
+
+   messages = Chat_History.objects.filter(user1 = request.user, user2 = profile.user) | Chat_History.objects.filter( user1 = profile.user, user2 = request.user)
+
+   chatHistory = messages.first()
+
    return render(request, 'profile/details.html', {
       'profile': profile,
+      'chatHistory': chatHistory
    })
+
 
 def friends_list(request):
   friends_list = request.user.friends.all()
@@ -121,7 +128,6 @@ def add_photo(request, profile_id):
 class ProfileUpdate(UpdateView):
    model = Profile
    fields = ['nickname']
-
 
 
 
