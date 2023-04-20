@@ -13,6 +13,8 @@ django = "*"
 python-decouple = "*"
 psycopg2-binary = "*"
 django-tailwind = "*"
+boto3 = "*"
+django-environ = "*"
 
 [dev-packages]
 
