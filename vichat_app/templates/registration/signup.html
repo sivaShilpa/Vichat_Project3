@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="min-h-screen bg-gradient-to-r from-green-500 to-lime-200 flex items-center justify-center">
+    <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6 text-center">Sign Up</h1>
+
+        {% if error_message %}
+        <p class="text-red-500 mb-4">{{ error_message }}</p>
+        {% endif %}
+
+        <form method="POST" action="{% url 'signup' %}" class="space-y-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="flex justify-center">
+                <input type="submit" class="bg-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded" value="Sign Up">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+

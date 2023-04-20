@@ -3,10 +3,16 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[[source]]
+url = "nary"
+verify_ssl = false
+name = ""
+
 [packages]
 django = "*"
 python-decouple = "*"
 psycopg2-binary = "*"
+django-tailwind = "*"
 
 [dev-packages]
 

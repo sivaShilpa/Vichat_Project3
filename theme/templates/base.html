@@ -1,0 +1,91 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>ViChat</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+	</head>
+
+	<body class="text-lime-600">
+
+		<nav class="bg-white shadow-lg">
+			<div class="max-w-6xl mx-auto px-4">
+				<div class="flex justify-between">
+					<div class="flex space-x-7">
+						<!-- Website Logo -->
+						<div>
+							<!-- <a href="#" class="flex items-center py-4 px-2">
+								<img src="logo.png" alt="Logo" class="h-8 w-8 mr-2" />
+								<span class="font-semibold text-gray-500 text-lg"
+									>Navigation</span
+								>
+							</a> -->
+						</div>
+						<!-- Primary Navbar items -->
+						<div class="flex items-center justify-between px-4 py-6">
+							<a
+								href="/"
+								class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold "
+								>Home</a
+							>
+							{% if user.is_authenticated %}
+							<a
+							href="{% url 'profile' user.id %}"
+							class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+							>Profile</a
+							>
+							<a
+							href="{% url 'friends_list' %}"
+							class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+							>Friends</a
+						>
+						<a
+							href=""
+							class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+							>Video</a
+							>
+							<div class="flex items-center justify-end px-4 py-6 mr-8">
+								<a
+								href="{% url 'logout' %}"
+								class="justify-end py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 space-x-4"
+								>Log out</a
+								>
+								</div>
+							{% else %}
+							<a
+							href="{% url 'signup' %}"
+							class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+							>Sign up</a
+							>
+							<a
+							href="{% url 'login' %}"
+							class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+							>Log in</a
+							>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- <nav>
+			{% if user.is_authenticated %}
+			<li><a href="{% url 'profile' user.id %}">My Profile</a></li>
+			<li><a class="block w-16 h-16" href="{% url 'logout' %}">Log Out</a></li>
+			{% else %}
+			<li><a href="{% url 'signup' %}">Sign Up</a></li>
+			<li><a href="{% url 'login' %}">Log In</a></li>
+			{% endif %}
+		</nav> -->
+
+
+		<main>
+			{% block content %}
+
+			{% endblock %}
+		</main>
+	</body>
+</html>
