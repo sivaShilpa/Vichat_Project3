@@ -30,6 +30,15 @@ def friends_list(request):
       'friend_profiles': friend_profiles,
   })
 
+def delete_friend(request, profile_id):
+  other_user = Profile.objects.get(id=profile_id).user
+  other_user.friends.remove(request.user.id)
+  request.user.friends.remove(other_user.id)
+  
+  
+
+  return redirect('friends_list')
+
 def friend_requests_index(request):
   allusers = User.objects.all()
   all_friend_requests = Friend_Request.objects.filter(to_user = request.user)
