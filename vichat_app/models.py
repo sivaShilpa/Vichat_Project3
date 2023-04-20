@@ -39,3 +39,23 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+class Message(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    content = models.CharField(max_length=1000) 
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f"Photo for user: {self.profile.user} @{self.url}"
+    
+class Chat_History(models.Model):
+    user1 = models.ForeignKey(
+      User, related_name='user1', on_delete=models.CASCADE)
+    user2 = models.ForeignKey(
+      User, related_name='user2', on_delete=models.CASCADE)
+    
+    msg_history = models.ForeignKey(Message, on_delete=models.CASCADE)
+
