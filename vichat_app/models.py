@@ -40,9 +40,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
-class Message(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    content = models.CharField(max_length=1000) 
+
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)
@@ -57,5 +55,8 @@ class Chat_History(models.Model):
     user2 = models.ForeignKey(
       User, related_name='user2', on_delete=models.CASCADE)
     
-    msg_history = models.ForeignKey(Message, on_delete=models.CASCADE)
+class Message(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    content = models.CharField(max_length=1000) 
+    chatHistory = models.ForeignKey(Chat_History,on_delete=models.CASCADE, default='1')
 
