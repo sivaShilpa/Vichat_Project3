@@ -16,12 +16,10 @@
         {% else %}   
         
         <div>
-            <h1>{{chatHistory}}</h1>
             <div>
                 {% for message in chatHistory.message_set.all %}
                     <div>
-                        <p>{{ message }}</p>
-                        <p>{{ message.user }}</p>
+                        <p>{{ message.user.nickname }}</p>
                         <p>{{ message.content }}</p>
                     </div>
                 {% endfor%}
