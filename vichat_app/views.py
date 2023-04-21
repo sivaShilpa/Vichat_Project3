@@ -25,14 +25,14 @@ def main(request):
 
 def profile(request, profile_id):
    profile = Profile.objects.get(id=profile_id)
-
-   messages = Chat_History.objects.filter(user1 = request.user, user2 = profile.user) | Chat_History.objects.filter( user1 = profile.user, user2 = request.user)
-
-   chatHistory = messages.first()
+   room = Chat_History.objects.get(slug=slug)
+  #  messages = Chat_History.objects.filter(user1 = request.user, user2 = profile.user) | Chat_History.objects.filter( user1 = profile.user, user2 = request.user)
+   messages = Message.objects.filter(room=room)[0:25]
+  #  chatHistory = messages.first()
 
    return render(request, 'profile/details.html', {
       'profile': profile,
-      'chatHistory': chatHistory
+      'chatHistory': room      
    })
 
 
