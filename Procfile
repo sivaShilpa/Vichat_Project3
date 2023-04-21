@@ -1,1 +1,1 @@
-web: gunicorn vichat_project.wsgi
+web: daphne vichat_project.asgi:application --port $PORT --bind 0.0.0.0 -v2
