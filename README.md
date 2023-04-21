@@ -3,15 +3,15 @@
    Vichat is a video chat app that provides a facility for the user to add contacts to their friends' list and do a video call with them from their device.
       
 ## B. User Stories
-   - AAU I would like to have a friends list
-   - AAU I want to be able to upload a profile picture
-   - AAU I would like to able to send friend requests to other users
-   - AAU I want to have a profile that I can edit
-   - AAU I want to be able to join a meeting room
-   - AAU I want to be able to do a group video call
-   - AAU I want to be able to turn off my camera
-   - AAU I want to be able to mute my mic
-   - AAU I want to be to call someone directly from my friends list
+   - As a user I would like to have a friends list
+   - As a user I want to be able to upload a profile picture
+   - As a user I would like to able to send friend requests to other users
+   - As a user I want to have a profile that I can edit
+   - As a user I want to be able to join a meeting room
+   - As a user I want to be able to do a group video call
+   - As a user I want to be able to turn off my camera
+   - As a user I want to be able to mute my mic
+   - As a user I want to be to call someone directly from my friends list
       
 ## C. Images
 
