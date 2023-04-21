@@ -14,7 +14,7 @@
                     </div>
                 </a>
 
-                <a href="{% url 'remove_friend' friend.id %}"><button>remove friend</button></a>
+                <a href="{% url 'remove_friend' friend.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><button>remove friend</button></a>
             </div>
             {% empty %}
             <a href="{% url 'fr-index' %}">
