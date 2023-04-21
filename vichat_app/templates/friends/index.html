@@ -2,9 +2,9 @@
 {% block content %}
 
 
-<div class="min-h-screen bg-gradient-to-r flex items-center justify-center">
-    <div class="bg-gray-100 shadow-md rounded-lg p-6 h-full w-full max-w-2xl">
-        <div class="flex flex-wrap justify-around items-center">
+<div class="min-h-screen bg-gradient-to-r from-green-400 to-lime-300 flex items-center justify-center">
+    <div class="bg-white shadow-md rounded-lg p-6 h-full w-full max-w-2xl">
+        <div class="flex justify-around items-center">
             {% for friend in friend_profiles %}
             <div class="flex flex-col items-center">
                 <a href="{% url 'profile' friend.id %}">
@@ -15,13 +15,6 @@
                 </a>
                 <a href="{% url 'remove_friend' friend.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><button>remove friend</button></a>
             </div>
-                <div class="text-center">
-                    <a href="{% url 'remove_friend' friend.id %}">
-                        <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
-                            Remove friend
-                        </button>
-                    </a>
-                </div>
                 {% empty %}
                 <div class="text-center">
                     <a href="{% url 'fr-index' %}" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
