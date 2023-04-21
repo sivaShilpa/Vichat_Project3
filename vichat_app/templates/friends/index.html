@@ -6,27 +6,25 @@
     <div class="bg-white shadow-md rounded-lg p-6 h-full w-full max-w-2xl">
         <div class="flex justify-around items-center">
             {% for friend in friend_profiles %}
-            <div>
+            <div class="flex flex-col items-center">
                 <a href="{% url 'profile' friend.id %}">
-                    <div>
+                    <div class="flex flex-col items-center">
                         <p id="nickName">{{ friend.nickname }}</p>
                         <img class="w-48 h-48 object-cover rounded-full mt-4 mb-6" src="{{friend.profile_pic}}" alt="profile pic">
                     </div>
                 </a>
-
-                <a href="{% url 'remove_friend' friend.id %}"><button>remove friend</button></a>
+                <a href="{% url 'remove_friend' friend.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><button>remove friend</button></a>
             </div>
-            {% empty %}
-            <a href="{% url 'fr-index' %}">
-                <h2 class="text-2xl">Add some friends to get started!</h2>
-            </a>
+                {% empty %}
+                <div class="text-center">
+                    <a href="{% url 'fr-index' %}" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+                        <h2 class="text-2xl">Add some friends to get started!</h2>
+                    </a>
+                </div>                
             {% endfor %}
         </div>
-
     </div>
 </div>
-
-
 
 
 {% endblock %}
