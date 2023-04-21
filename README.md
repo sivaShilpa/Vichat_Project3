@@ -4,8 +4,8 @@
    
 Developed by: 
 - **Anthony Scott** - Researcher, Back End, Agora, Models, Views, Controllers, Database, Trello
-- **Jose Aguirre** - Project Manager, Designer, Frontend, AWS, Templates, Database
-- **Shilpa Sivarajan** - Git Owner, Back End, Models
+- **Jose Aguirre** - Project Manager, Designer, Frontend, AWS, Templates, Database, Powerpoint slides
+- **Shilpa Sivarajan** - Git Owner, Back End, Models, Readme
    
 ## B. User Stories
 ```
