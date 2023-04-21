@@ -150,5 +150,7 @@ INTERNAL_IPS = [
 
 AUTH_USER_MODEL = 'vichat_app.User'
 
+CSRF_TRUSTED_ORIGINS = ["https://vichat-messaging-app.herokuapp.com"]
+
 import django_on_heroku
 django_on_heroku.settings(locals())
