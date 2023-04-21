@@ -54,7 +54,7 @@ class Chat_History(models.Model):
       User, related_name='user1', on_delete=models.CASCADE)
     user2 = models.ForeignKey(
       User, related_name='user2', on_delete=models.CASCADE)
-    roomcode = models.CharField(max_length=200)
+    roomcode = models.CharField(max_length=200, default='catfdog')
     
 class Message(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)

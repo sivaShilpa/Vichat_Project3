@@ -103,7 +103,11 @@ def accept_friend_request(request, requestID):
         friend_request.to_user.friends.add(friend_request.from_user)
         friend_request.from_user.friends.add(friend_request.to_user)
 
-        c = Chat_History.objects.create(user1=friend_request.from_user,user2=friend_request.to_user)
+        c = Chat_History.objects.create(
+           user1=friend_request.from_user,
+           user2=friend_request.to_user,
+           roomcode=f"{friend_request.to_user.username}{friend_request.from_user.username}"
+           )
         c.save()
 
         friend_request.delete()
