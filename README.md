@@ -26,6 +26,8 @@ Developed by:
    As a user I want to be able to mute my mic
 	 
    As a user I want to be to call someone directly from my friends list
+   
+   As a user I want to be able to remove a friend
  ```     
 ## C. Images
 
@@ -62,7 +64,5 @@ Click on [ViChat](https://vichat-messaging.herokuapp.com/) to start using this a
 
 ## F. Next Steps
 ```
-As a user I want to be able to remove a friend
-
 As a user I would like to be able to private message my friends
 ```			
