@@ -16,6 +16,8 @@ django-tailwind = "*"
 boto3 = "*"
 django-environ = "*"
 daphne = "*"
+channels = "*"
+channels-postgres = "*"
 
 [dev-packages]
 

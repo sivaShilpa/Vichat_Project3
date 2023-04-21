@@ -17,87 +17,67 @@
         
         <div>
             <div>
+                
                 {% for message in chatHistory.message_set.all %}
                     <div>
                         <p>{{ message.user.nickname }}</p>
                         <p>{{ message.content }}</p>
                     </div>
                 {% endfor%}
+                <div id='socket-messages'></div>
             </div>
         </div>
         
-        <div >
-            <form method="post" action="." class="flex">
-                <input type="text" name="content" placeholder="Your message here...">
-        
-                <button>Send</button>
+        <div>
+            <form id="form">
+                <input type="text" name="message" placeholder="Your message here...">
             </form>
         </div>
         {% endif %}
     </div>
 </div>
 
-{% endblock %}
 
-{% block scripts %}
-{{ room.slug|json_script:"json-roomname" }}
-{{ request.user.username|json_script:"json-username" }}
 
-    <script>
-        const roomName = JSON.parse(document.getElementById('json-roomname').textContent)
-        const userName = JSON.parse(document.getElementById('json-username').textContent)
 
-        const chatSocket = new WebSocket(
-            'ws://'
-            + window.location.host
-            + '/ws/'
-            + roomName
-            + '/'
-        );
+    <script type="text/javascript">
 
-        chatSocket.onmessage=function(e){
-            console.log('onmessage')
-            const data = JSON.parse(e.data);
-            if(data.message){
-                let html = '<div class="p-4 bg-gray-200 rounded-xl">';
-                html += '<p class="font-semibold">'+ data.username +'</p>';
-                html += '<p>'+data.message + '</p>';
-                html += '</div>'
 
-                document.querySelector('#chat-messages').innerHTML += html;
+        let url = `ws://${window.location.host}/ws/socket-server/`
 
-                scrollToBottom();
-            }
-            else{
-                alert('The message was empty!')
+
+        const chatSocket = new WebSocket(url)
+
+
+        chatSocket.onmessage = function(evt){
+            let data = JSON.parse(evt.data)
+            console.log('Data:', data)
+
+            if(data.type === 'chat'){
+                let messages = document.getElementById('socket-messages')
+
+
+                messages.insertAdjacentHTML('beforeend', `<div>
+                                                                <p>${data.message}</p>
+                                                        </div>
+                
+                `)
             }
         }
 
-        chatSocket.onclose=function(e){
-            console.log('onclose')
-        }
+        let formEL = document.getElementById('form')
+        formEL.addEventListener('submit', (e) =>{
+            e.preventDefault()
 
-        document.querySelector('#chat-message-submit').onclick = function(e){
-            e.preventDefault();
-            const messageInputDom = document.querySelector('#chat-message-input');
-            const message = messageInputDom.value;
-
+            let message = e.target.message.value
             chatSocket.send(JSON.stringify({
-                'message': message,
-                'username': userName, 
-                'room': roomName
-            }));
+                'message': message
+            }))
 
-            messageInputDom.value = '';
+            form.reset()
+        })
 
-            return false;
-        }
-
-        function scrollToBottom(){
-            const objDiv = document.querySelector('#chat-messages');
-            objDiv.scrollTop = objDiv.scrollHeight;
-        }
-        scrollToBottom();
     </script>
-{% endblock %}
 
+
+{% endblock %}

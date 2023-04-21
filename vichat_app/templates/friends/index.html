@@ -7,6 +7,10 @@
         <div class="flex justify-around items-center">
             {% for friend in friend_profiles %}
             <div>
+                <form class="call">
+                    
+                </form>
+                
                 <a href="{% url 'profile' friend.id %}">
                     <div>
                         <p>{{ friend.nickname }}</p>

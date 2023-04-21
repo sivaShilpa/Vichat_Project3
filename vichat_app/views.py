@@ -101,32 +101,34 @@ def accept_friend_request(request, requestID):
 
         c = Chat_History.objects.create(user1=friend_request.from_user,user2=friend_request.to_user)
         c.save()
-        
+
         friend_request.delete()
         return redirect('fr-index')
     else:
         return redirect('fr-index')
 
 def add_photo(request, profile_id):
-    # photo_file = request.FILES.get('photo-file', None)
-    # # print(config('S3_BUCKET'))
-    # # print(f"{config('S3_BASE_URL')}{config('S3_BUCKET')}/{uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]}")
-    # print(photo_file)
-    # if photo_file:
-    #     s3 = boto3.client('s3', 
-    #     aws_access_key_id=config('AWS_ACCESS_KEY_ID'),
-    #     aws_secret_access_key=config('AWS_SECRET_ACCESS_KEY'))
-    #     key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-    #     bucket = config('S3_BUCKET')
-    #     print(f'the bucket is {bucket}')
-    #     print(key)
-    #     try:
-    #         s3.upload_fileobj(photo_file, bucket, key)
-    #         url = f"{config('S3_BASE_URL')}{bucket}/{key}"
-    #         Photo.objects.create(url=url, profile_id=profile_id)
-    #     except Exception as e:
-    #         print('An error occurred uploading file to S3')
-    #         print(e)
+    photo_file = request.FILES.get('photo-file', None)
+    my_profile = Profile.objects.get(id=profile_id)
+  
+    
+    if photo_file:
+        s3 = boto3.client('s3', 
+        aws_access_key_id=config('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=config('AWS_SECRET_ACCESS_KEY'))
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        bucket = config('S3_BUCKET')
+        
+        try:
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f"{config('S3_BASE_URL')}{bucket}/{key}"
+            Photo.objects.create(url=url, profile_id=profile_id)
+            my_profile.profile_pic = url
+            my_profile.save()
+    
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
     return redirect('profile', profile_id=profile_id)
 
 class ProfileUpdate(UpdateView):
