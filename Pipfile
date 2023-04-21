@@ -15,8 +15,9 @@ psycopg2-binary = "*"
 django-tailwind = "*"
 boto3 = "*"
 django-environ = "*"
+daphne = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.8"

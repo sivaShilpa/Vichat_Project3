@@ -21,11 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 from decouple import config
-import environ
-environ.Env() 
-environ.Env.read_env()
+# import environ
+# environ.Env() 
+# environ.Env.read_env()
 SECRET_KEY = config('SECRET_KEY')
-print(config('AWS_ACCESS_KEY_ID'))
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'vichat_app',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -75,7 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'vichat_project.wsgi.application'
-
+ASGI_APPLICATION = 'vichat_project.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -127,6 +128,7 @@ STATIC_URL = 'static/'
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
