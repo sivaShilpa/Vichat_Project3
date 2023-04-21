@@ -149,3 +149,6 @@ INTERNAL_IPS = [
 ]
 
 AUTH_USER_MODEL = 'vichat_app.User'
+
+import django_on_heroku
+django_on_heroku.settings(locals())

@@ -3,7 +3,7 @@
    Vichat is a video chat app that provides a facility for the user to add contacts to their friends' list and do a video call with them from their device.
    
 Developed by: 
-- **Anthony Scott** - Researcher, Back End, Agora, Models, Views, Controllers, Database, Trello
+- **Anthony Scott** - Researcher, Back End, Agora, Models, Trello
 - **Jose Aguirre** - Project Manager, Designer, Frontend, AWS, Templates, Database, Powerpoint slides
 - **Shilpa Sivarajan** - Git Owner, Back End, Models, Readme
    

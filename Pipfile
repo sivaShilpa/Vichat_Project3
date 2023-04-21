@@ -19,6 +19,7 @@ daphne = "*"
 channels = "*"
 channels-postgres = "*"
 agora-token-builder = "*"
+django-on-heroku = "*"
 
 [dev-packages]
 
