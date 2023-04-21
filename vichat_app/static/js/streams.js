@@ -69,7 +69,7 @@ async function handleUserLeaving(user) {
 async function toggleVideo(e){
   if(localTracks[1].muted){
     await localTracks[1].setMuted(false)
-    e.target.style.backgroundColor = '#fff'
+    e.target.style.backgroundColor = '#3b82f6'
   } else{
     await localTracks[1].setMuted(true)
     e.target.style.backgroundColor = 'rgb(255, 80, 80, 1)'
@@ -79,7 +79,7 @@ async function toggleVideo(e){
 async function toggleAudio(e){
   if(localTracks[0].muted){
     await localTracks[0].setMuted(false)
-    e.target.style.backgroundColor = '#fff'
+    e.target.style.backgroundColor = '#3b82f6'
     
   } else{
     await localTracks[0].setMuted(true)
