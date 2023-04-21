@@ -5,6 +5,7 @@
 <div class="min-h-screen flex items-center justify-center">
     <div class="bg-white shadow-md rounded-lg p-6 my-4 w-full max-w-md">
         <div class="flex flex-col items-center">
+          
             <img src="{{ profile.profile_pic }}" alt="{{ profile.nickname }}'s profile picture" class="w-48 h-48 object-cover rounded-full mt-4 mb-6">
             <p class="text-lg font-bold mb-4">{{ profile.nickname }}</p>
         </div>
@@ -14,70 +15,46 @@
             <a href="{% url 'profile_update' profile.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Profile</a>
         </div>
         {% else %}   
-        
-        <div>
-            <div>
-                
-                {% for message in chatHistory.message_set.all %}
-                    <div>
-                        <p>{{ message.user.nickname }}</p>
-                        <p>{{ message.content }}</p>
-                    </div>
-                {% endfor%}
-                <div id='socket-messages'></div>
-            </div>
-        </div>
-        
-        <div>
-            <form id="form">
-                <input type="text" name="message" placeholder="Your message here...">
-            </form>
-        </div>
+        <form id="call" class="call">
+            <input type="submit" value="Call Friend">
+        </form>
         {% endif %}
     </div>
 </div>
 
+<script type="text/javascript">
+    const callBtns = document.querySelectorAll('#call')
+    
+
+    let room = `{{profile.nickname}}{{user.username}}`
+    console.log(room)
+    
+    async function handleSubmit(e){
+        e.preventDefault()
 
 
+        let response = await fetch(`./get_token?channel=${room}`)
+        let data = await response.json()
 
-    <script type="text/javascript">
+        let UID = data.uid 
+        let token = data.token
+
+        sessionStorage.setItem('UID', UID)
+        sessionStorage.setItem('token', token)
+        sessionStorage.setItem('room', room)
+
+        window.open('/room', '_self')
+    }
+
+    callBtns.forEach((item) => {
+        item.addEventListener('submit', handleSubmit)
+    })
+
+    
+</script>
 
 
-        let url = `ws://${window.location.host}/ws/socket-server/`
-
-
-        const chatSocket = new WebSocket(url)
-
-
-        chatSocket.onmessage = function(evt){
-            let data = JSON.parse(evt.data)
-            console.log('Data:', data)
-
-            if(data.type === 'chat'){
-                let messages = document.getElementById('socket-messages')
-
-
-                messages.insertAdjacentHTML('beforeend', `<div>
-                                                                <p>${data.message}</p>
-                                                        </div>
-                
-                `)
-            }
-        }
-
-        let formEL = document.getElementById('form')
-        formEL.addEventListener('submit', (e) =>{
-            e.preventDefault()
-
-            let message = e.target.message.value
-            chatSocket.send(JSON.stringify({
-                'message': message
-            }))
-
-            form.reset()
-        })
-
-    </script>
+    
 
 
 {% endblock %}

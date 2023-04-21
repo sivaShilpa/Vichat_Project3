@@ -4,6 +4,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
+from agora_token_builder import RtcTokenBuilder
+from django.http import JsonResponse
+import random
+import time
 from .models import *
 from .forms import *
 import uuid
@@ -130,6 +134,27 @@ def add_photo(request, profile_id):
             print('An error occurred uploading file to S3')
             print(e)
     return redirect('profile', profile_id=profile_id)
+
+
+def get_token(request):
+    appId = config('APP_ID')
+    appCertificate = config('APP_CERT')
+    channelName = request.GET.get('channel')
+    uid = random.randint(1,230)
+
+    expirationTimeInSeconds = 3600 * 24
+    currentTimeStamp = time.time()
+    privilegeExpiredTs = currentTimeStamp + expirationTimeInSeconds
+    role = 1
+
+    
+    token = RtcTokenBuilder.buildTokenWithUid(appId, appCertificate, channelName, uid, role, privilegeExpiredTs)
+    return JsonResponse({'token': token, 'uid': uid}, safe=False)
+
+def room(request):
+   return render(request, 'vichat_app/room.html')
+
+
 
 class ProfileUpdate(UpdateView):
    model = Profile

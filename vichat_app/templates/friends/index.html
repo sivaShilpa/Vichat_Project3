@@ -7,13 +7,9 @@
         <div class="flex justify-around items-center">
             {% for friend in friend_profiles %}
             <div>
-                <form class="call">
-                    
-                </form>
-                
                 <a href="{% url 'profile' friend.id %}">
                     <div>
-                        <p>{{ friend.nickname }}</p>
+                        <p id="nickName">{{ friend.nickname }}</p>
                         <img src="" alt="profile pic">
                     </div>
                 </a>
@@ -29,4 +25,8 @@
 
     </div>
 </div>
+
+
+
+
 {% endblock %}
