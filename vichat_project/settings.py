@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'daphne',
+    'channels_postgres',
     'vichat_app',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,6 +47,12 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
 ]
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,7 +92,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'vichat'
-    }
+    },
 }
 
 

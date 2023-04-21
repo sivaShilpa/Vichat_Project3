@@ -5,6 +5,7 @@
 <div class="min-h-screen flex items-center justify-center">
     <div class="bg-white shadow-md rounded-lg p-6 my-4 w-full max-w-md">
         <div class="flex flex-col items-center">
+          
             <img src="{{ profile.profile_pic }}" alt="{{ profile.nickname }}'s profile picture" class="w-48 h-48 object-cover rounded-full mt-4 mb-6">
             <p class="text-lg font-bold mb-4">{{ profile.nickname }}</p>
         </div>
@@ -14,32 +15,53 @@
             <a href="{% url 'profile_update' profile.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Profile</a>
         </div>
         {% else %}   
-        <a href="{% url 'dm' chatHistory.slug %}" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">Message {{ profile.nickname }}</a>
-        
 
-        <div>
-            <div>
-                {% for message in chatHistory.message_set.all %}
-                    <div>
-                        <p>{{ message.user.nickname }}</p>
-                        <p>{{ message.content }}</p>
-                    </div>
-                {% endfor%}
-            </div>
-        </div>
-        
-        <div >
-            <form method="post" action="." class="flex">
-                <input type="text" name="content" placeholder="Your message here...">
-        
-                <button>Send</button>
-            </form>
-        </div>
+        <form id="call" class="call">
+            <input type="submit" value="Call Friend">
+        </form>
 
+       
         {% endif %}
     </div>
 </div>
 
+
+<script type="text/javascript">
+    const callBtns = document.querySelectorAll('#call')
+    
+
+    let room = `{{chatHistory.roomcode}}`
+    console.log(room)
+    
+    async function handleSubmit(e){
+        e.preventDefault()
+
+
+        let response = await fetch(`./get_token?channel=${room}`)
+        let data = await response.json()
+
+        let UID = data.uid 
+        let token = data.token
+
+        sessionStorage.setItem('UID', UID)
+        sessionStorage.setItem('token', token)
+        sessionStorage.setItem('room', room)
+
+        window.open('/room', '_self')
+    }
+
+    callBtns.forEach((item) => {
+        item.addEventListener('submit', handleSubmit)
+    })
+
+    
+</script>
+
+
+    
+
 {% endblock %}
 
 
+
+{% endblock %}
