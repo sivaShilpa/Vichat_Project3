@@ -55,10 +55,10 @@ Developed by:
 ## E. Getting Started
 Click on [ViChat](https://vichat-messaging.herokuapp.com/) to start using this app. 
 1) ### Home Page 
-- From the Home Page, a user must sign up from the home page and then log in. 
+	- From the Home Page, a user must sign up from the home page and then log in. 
 2) ### Friends page
-- Then the user can go to the friends page where they can check if there are any friends' request. If there are friends' request they can accept it if they want to. 
-- From here the user can click on a friend to call them. 
+	- Then the user can go to the friends page where they can check if there are any friends' request. If there are friends' request they can accept it if they want to. 
+	- From here the user can click on a friend to call them. 
 
 ## F. Next Steps
 ```
