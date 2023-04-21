@@ -9,8 +9,8 @@
             <div>
                 <a href="{% url 'profile' friend.id %}">
                     <div>
-                        <p>{{ friend.nickname }}</p>
-                        <img src="" alt="profile pic">
+                        <p id="nickName">{{ friend.nickname }}</p>
+                        <img class="w-48 h-48 object-cover rounded-full mt-4 mb-6" src="{{friend.profile_pic}}" alt="profile pic">
                     </div>
                 </a>
 
@@ -25,4 +25,8 @@
 
     </div>
 </div>
+
+
+
+
 {% endblock %}

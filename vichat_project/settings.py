@@ -21,6 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 from decouple import config
+# import environ
+# environ.Env() 
+# environ.Env.read_env()
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -32,6 +35,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels_postgres',
     'vichat_app',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,6 +47,12 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
 ]
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,7 +83,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'vichat_project.wsgi.application'
-
+ASGI_APPLICATION = 'vichat_project.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -81,7 +92,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'vichat'
-    }
+    },
 }
 
 
@@ -124,6 +135,7 @@ STATIC_URL = 'static/'
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

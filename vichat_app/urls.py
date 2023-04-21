@@ -6,6 +6,7 @@ urlpatterns =[
     path('profile/friend_requests/', views.friend_requests_index, name='fr-index'),
     path('profile/<int:profile_id>', views.profile, name='profile'),
     path('profile/<int:pk>/update', views.ProfileUpdate.as_view(), name='profile_update'),
+    path('profile/get_token/', views.get_token, name='get_token'),
 
     path('accounts/signup/', views.signup, name='signup'),
 
@@ -18,4 +19,9 @@ urlpatterns =[
 
     path('users/friends/<int:profile_id>/delete', views.delete_friend, name='remove_friend'),
     path('user/friends', views.friends_list, name='friends_list'),
+    path('profile/<int:profile_id>/add_photo/', views.add_photo, name='add_photo'),
+
+    path('room/', views.room, name='room'),
+
+    
 ]

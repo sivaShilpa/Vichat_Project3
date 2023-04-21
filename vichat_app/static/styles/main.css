@@ -1,0 +1,24 @@
+body {
+    height: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+#video-streams {
+    height: 20vh;
+    width: 30vw;
+}
+
+.video-container {
+    height: 100%;
+    width: 100%;
+}
+
+.video-player {
+    border: 1px solid grey;
+    height: 100%;
+    width: 100%;
+}
