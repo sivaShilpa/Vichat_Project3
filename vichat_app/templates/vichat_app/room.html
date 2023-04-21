@@ -7,6 +7,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 		{% tailwind_css %}
         <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
 	</head>
@@ -43,12 +44,7 @@
 							href="{% url 'friends_list' %}"
 							class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
 							>Friends</a
-						>
-						<a
-							href=""
-							class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
-							>Video</a
-							>
+						  >
 							<div class="flex items-center justify-end px-4 py-6 mr-8">
 								<a
 								href="{% url 'logout' %}"
@@ -75,36 +71,42 @@
 		</nav>
 	
 
-		<main>
-
-
-
-
-
-<section id="video-streams"></section>
-
-<section id="controls-wrapper">
-    <div class="icon-wrapper">
-        <div class="cotnrols-wrapper" id="mic-btn">Mic</div>
-    </div>
-
-    <div class="icon-wrapper">
-        <div class="cotnrols-wrapper" id="camera-btn">Camera</div>
-    </div>
-
-    <div class="icon-wrapper">
-        <a href="{% url 'main' %}">
-            <div class="cotnrols-wrapper">Leave</div>
-        </a>
-    </div>
-</section>
-
-<section></section>
-
-<script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.17.0.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/streams.js' %}"></script>
-
-</main>
+		<main class="min-h-screen bg-gray-100 flex items-center justify-center">
+			<div class="bg-white shadow-lg rounded-lg p-4 w-full max-w-2xl">
+					<section id="video-streams" class="flex justify-center items-center space-x-4 mb-4">
+							<div class="w-full sm:w-1/2">
+									<video class="object-cover w-full h-96 rounded" id="local-video" autoplay playsinline></video>
+							</div>
+							<div class="w-full sm:w-1/2">
+									<video class="object-cover w-full h-96 rounded" id="remote-video" autoplay playsinline></video>
+							</div>
+					</section>
+			</div>
+	
+					<section id="controls-wrapper" class="flex justify-center items-center space-x-4">
+							<div class="icon-wrapper">
+									<button class="cotnrols-wrapper bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="mic-btn">Mic</button>
+							</div>
+	
+							<div class="icon-wrapper">
+									<button class="cotnrols-wrapper bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="camera-btn">Camera</button>
+							</div>
+	
+							<div class="icon-wrapper">
+									<a href="{% url 'main' %}">
+											<button class="cotnrols-wrapper bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Leave</button>
+									</a>
+							</div>
+					</section>
+			</div>
+	
+			<section></section>
+	
+			<script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.17.0.js' %}"></script>
+			<script type="text/javascript" src="{% static 'js/streams.js' %}"></script>
+	</main>
+	
+	
 </body>
 
 </html>
