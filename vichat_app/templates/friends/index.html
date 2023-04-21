@@ -6,13 +6,15 @@
     <div class="bg-gray-100 shadow-md rounded-lg p-6 h-full w-full max-w-2xl">
         <div class="flex flex-wrap justify-around items-center">
             {% for friend in friend_profiles %}
-            <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-6">
+            <div class="flex flex-col items-center">
                 <a href="{% url 'profile' friend.id %}">
-                    <div class="text-center">
+                    <div class="flex flex-col items-center">
                         <p id="nickName">{{ friend.nickname }}</p>
                         <img class="w-48 h-48 object-cover rounded-full mt-4 mb-6" src="{{friend.profile_pic}}" alt="profile pic">
                     </div>
                 </a>
+                <a href="{% url 'remove_friend' friend.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><button>remove friend</button></a>
+            </div>
                 <div class="text-center">
                     <a href="{% url 'remove_friend' friend.id %}">
                         <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
