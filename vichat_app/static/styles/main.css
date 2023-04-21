@@ -18,8 +18,7 @@ main {
 }
 
 .video-player {
-    border: 1px solid red;
-
+    border: 1px solid grey;
     height: 100%;
     width: 100%;
 }
