@@ -6,9 +6,9 @@
     <div class="bg-white shadow-md rounded-lg p-6 h-full w-full max-w-2xl">
         <div class="flex justify-around items-center">
             {% for friend in friend_profiles %}
-            <div>
+            <div class="flex flex-col items-center">
                 <a href="{% url 'profile' friend.id %}">
-                    <div>
+                    <div class="flex flex-col items-center">
                         <p id="nickName">{{ friend.nickname }}</p>
                         <img class="w-48 h-48 object-cover rounded-full mt-4 mb-6" src="{{friend.profile_pic}}" alt="profile pic">
                     </div>
