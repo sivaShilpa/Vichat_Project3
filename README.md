@@ -47,7 +47,8 @@ Developed by:
 ### Planning and Organization
 ```
 1. Trello
-2. Lucid Chart
+2. Lucidchart
+3. MockFlow
  
 ```
 
