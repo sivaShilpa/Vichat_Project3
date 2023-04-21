@@ -10,7 +10,7 @@
                 <a href="{% url 'profile' friend.id %}">
                     <div>
                         <p id="nickName">{{ friend.nickname }}</p>
-                        <img src="" alt="profile pic">
+                        <img class="w-48 h-48 object-cover rounded-full mt-4 mb-6" src="{{friend.profile_pic}}" alt="profile pic">
                     </div>
                 </a>
 
