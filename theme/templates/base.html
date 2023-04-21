@@ -77,6 +77,40 @@
 			{% endblock %}
 
 		</main>
+		<footer class="relative mt-10">
+			<div class="bg-green-500">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160">
+					<path fill="#48bb78" fill-opacity="1" d="M0,64L48,74.7C96,85,192,107,288,112C384,117,480,107,576,117.3C672,128,768,160,864,170.7C960,181,1056,171,1152,154.7C1248,139,1344,117,1392,106.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+			</svg>			
+			</div>
+			<div class="bg-green-500 text-white py-8">
+					<div class="container mx-auto px-8">
+							<div class="flex flex-wrap justify-center items-center">
+									<div class="w-full sm:w-auto mb-6 sm:mb-0 text-center">
+											<h3 class="text-lg font-bold mb-3">ViChat</h3>
+											<p class="text-sm">Stay connected with friends and family.</p>
+									</div>
+									<div class="w-full sm:w-auto text-center">
+											<h3 class="text-lg font-bold mb-3">Quick Links</h3>
+											<ul class="text-sm inline-flex space-x-4">
+													<li><a href="/" class="hover:text-lime-300 transition duration-300">Home</a></li>
+													{% if user.is_authenticated %}
+													<li><a href="{% url 'profile' user.id %}" class="hover:text-lime-300 transition duration-300">Profile</a></li>
+													<li><a href="{% url 'friends_list' %}" class="hover:text-lime-300 transition duration-300">Friends</a></li>
+													{% else %}
+													<li><a href="{% url 'signup' %}" class="hover:text-lime-300 transition duration-300">Sign up</a></li>
+													<li><a href="{% url 'login' %}" class="hover:text-lime-300 transition duration-300">Log in</a></li>
+													{% endif %}
+											</ul>
+									</div>
+							</div>
+							<div class="mt-6 border-t border-white border-opacity-20 pt-6 text-sm">
+									<p class="text-center">&copy; {{ now.year }} ViChat. All rights reserved.</p>
+							</div>
+					</div>
+			</div>
+	</footer>
+	
 	</body>
 
 </html>
