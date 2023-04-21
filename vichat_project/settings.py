@@ -25,7 +25,7 @@ import environ
 environ.Env() 
 environ.Env.read_env()
 SECRET_KEY = config('SECRET_KEY')
-print(config('AWS_ACCESS_KEY_ID'))
+# print(config('AWS_ACCESS_KEY_ID'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

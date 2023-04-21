@@ -54,9 +54,13 @@ class Chat_History(models.Model):
       User, related_name='user1', on_delete=models.CASCADE)
     user2 = models.ForeignKey(
       User, related_name='user2', on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True)
     
 class Message(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     content = models.CharField(max_length=1000) 
     chatHistory = models.ForeignKey(Chat_History,on_delete=models.CASCADE, default='1')
+    date_added = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ('date_added',)
