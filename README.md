@@ -55,7 +55,7 @@ Developed by:
 ```
 
 ## E. Getting Started
-Click on [ViChat](https://vichat-messaging.herokuapp.com/) to start using this app. 
+Click on [ViChat](https://vichat-messaging-app.herokuapp.com/) to start using this app. 
 1) ### Home Page 
 	- From the Home Page, a user must sign up from the home page and then log in. 
 2) ### Friends page
