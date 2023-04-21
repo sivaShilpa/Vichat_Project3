@@ -1,1 +1,1 @@
-web: gunicorn vichat_project.wsgi
+web: gunicorn vichat_project.asgi
