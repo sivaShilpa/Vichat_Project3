@@ -1,6 +1,6 @@
 # Vichat
 ## A. Description
-   Vichat is a video chat app that provides a facility for the user to add contacts to their friends' list and do a video call with them from their device.
+   Vichat is a full-stack web application that provides a facility for the user to add contacts to their friends' list and do a video call with them from their device.
    
 Developed by: 
 - **Anthony Scott** - Researcher, Back End, Agora, Models, Trello
@@ -30,6 +30,13 @@ Developed by:
    As a user I want to be able to remove a friend
  ```     
 ## C. Images
+![Signup](staticfiles/images/signup.png)
+![Login](staticfiles/images/login.png)
+![Homepage](staticfiles/images/homepage.png)
+![My Profile](staticfiles/images/my_profile.png)
+![Add Friends](staticfiles/images/nofriends.png)
+![Friend Request Page](staticfiles/images/friendrequests.png)
+![Friends List](staticfiles/images/friendslist.png)
 
 ## D. Technologies Used
 ### Front End
@@ -43,16 +50,20 @@ Developed by:
 ```
 1. Django 
 2. Python
-3. AWS
 4. Agora SDK
+```
+### Cloud Based Services
+```
+1. Heroku
+2. AWS
 ```
 ### Planning and Organization
 ```
 1. Trello
 2. Lucidchart
 3. MockFlow
- 
 ```
+
 
 ## E. Getting Started
 Click on [ViChat](https://vichat-messaging-app.herokuapp.com/) to start using this app. 
@@ -62,7 +73,11 @@ Click on [ViChat](https://vichat-messaging-app.herokuapp.com/) to start using th
 	- Then the user can go to the friends page where they can check if there are any friends' request. If there are friends' request they can accept it if they want to. 
 	- From here the user can click on a friend to call them. 
 
+[Trello](https://trello.com/b/Bmb9slUC/vichat)
+[Pitch-Deck](https://docs.google.com/presentation/d/1GbR_fqQisto-ir7I3y6MpyYkky7ufAgbPJGofFDB11w/edit?usp=sharing)
+
 ## F. Next Steps
 ```
 As a user I would like to be able to private message my friends
+As a user I want to be able to see people's profiles before sending a friend request
 ```			
