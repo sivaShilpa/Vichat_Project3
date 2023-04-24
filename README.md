@@ -3,9 +3,9 @@
    Vichat is a full-stack web application that provides a facility for the user to add contacts to their friends' list and do a video call with them from their device.
    
 Developed by: 
-- **Anthony Scott** - Researcher, Back End, Agora, Models, Trello
-- **Jose Aguirre** - Project Manager, Designer, Frontend, AWS, Templates, Database, Powerpoint slides
-- **Shilpa Sivarajan** - Git Owner, Back End, Models, Readme
+- **Anthony Scott** - Researcher, Back End, Agora, Trello
+- **Jose Aguirre** - Project Manager, Designer, Frontend, Pitch-Deck
+- **Shilpa Sivarajan** - Git Owner, Back End, Documentation, Front End
    
 ## B. User Stories
 ```
